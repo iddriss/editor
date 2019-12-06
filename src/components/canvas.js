@@ -19,8 +19,6 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-
-
 class Canvas extends React.Component {
 
   constructor(props) {
@@ -34,16 +32,16 @@ class Canvas extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container id="canvas">
         <Block name="main title" fontSize="29px" fontWeight="600">
-          <Title contentEditable={true}>Title... </Title>
+          <Title id={"title_0"} contentEditable={true}>Title... </Title>
         </Block>
 
         {
-          this.props.blocks.map(({name, fontSize, fontWeight, dataIndex, color, Element}) => {
+          this.props.blocks.map(({name, fontSize, fontWeight, dataIndex, color, Element}, index) => {
 
             return (
-              <Block name={name} fontSize={fontSize} color={color} data-index={dataIndex} fontWeight={fontWeight}>
+              <Block key={index} name={name} fontSize={fontSize} color={color} data-index={dataIndex} fontWeight={fontWeight}>
                 <Element />
               </Block>
             );

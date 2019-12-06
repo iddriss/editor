@@ -108,21 +108,22 @@ class Editor extends React.Component {
         this.state = {
             nextIndex: 0,
             blocks: [],
+            ids: [],
         };
     }
 
     createBlock = (name, el) => {
 
         const lenght = this.state.blocks.length +1;
-        console.log(lenght);
-        this.setState({nextIndex: lenght+1})
+        this.setState({nextIndex: lenght+1});
+
+        const id = `${name}_${this.state.nextIndex}`;
+
+        this.setState({ids: [...this.state.ids, id]});
 
         const block = {
             name: name,
-            fontSize: '', 
-            fontWeight: '', 
             dataIndex: this.state.nextIndex, 
-            color: '', 
             Element: () => (el)
         }
 
@@ -131,10 +132,13 @@ class Editor extends React.Component {
         return block;
     };
 
-    addHeading = () => {
-        const name = "h2";
 
-        const el = <Heading type={name} index={this.state.nextIndex}/>;
+    addHeading = () => {
+        let name = "head";
+
+        const handleCreate = e => name = e;
+
+        const el = <Heading onCreate={handleCreate} type={name} index={this.state.nextIndex}/>;
 
         const block = this.createBlock(name, el);
 
@@ -232,6 +236,17 @@ class Editor extends React.Component {
         this.setState({
             blocks: [...this.state.blocks, block]
         })
+     };
+
+     componentDidUpdate = (prevState) => {
+         if (prevState.ids !== this.state.ids) {
+             this.sendIds();
+             console.log(this.state.ids);
+         }
+     }
+
+     sendIds = () => {
+        this.props.onUpdateIds(this.state.ids);
      };
 
 

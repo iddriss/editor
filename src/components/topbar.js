@@ -101,8 +101,6 @@ class Topbar extends React.Component {
 
     save() {};
 
-    exportfunc() {};
-
     render() {
         return (
             <Header>
@@ -115,12 +113,12 @@ class Topbar extends React.Component {
 
                 </div>
                 <div class="center">
-                <input type="text" name="author" placeholder="Author's name"></input>
+                <input id="author" type="text" name="author" placeholder="Author's name"></input>
                 </div>
 
                 <div class="right">
                     <Button onClick={this.save} className="save">Save</Button>
-                    <Button onClick={this.exportfunc} className="export">Export</Button>
+                    <Button onClick={this.props.exportFunc} className="export">Export</Button>
                 </div>
             </Header>
         );

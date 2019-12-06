@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import bullet from '../img/svg/bullet.svg';
 import numbered from '../img/svg/numbered.svg';
@@ -6,6 +6,7 @@ import { Alignment, Format, HeadingType } from '../components/format';
 
 const P = styled.p`
     text-align: ${({ alignment }) => alignment};
+    line-height: 2rem
 `;
 
 const PContainer = styled.div`
@@ -141,6 +142,7 @@ const Pre = styled.pre`
     border-radius: 10px;
     overflow: auto;
     padding: 1rem 1.5rem;
+    line-height: 2rem
 `;
 
 const TableEl = styled.table`
@@ -237,7 +239,7 @@ export const Heading = (props) => {
     const { type } = props;
 
     const stateData = {
-        type: '',
+        type: 'head',
         align: 'left',
 
     };
@@ -255,6 +257,11 @@ export const Heading = (props) => {
     const handleHead = e => {
         setState({ ...state, type: e })
     }
+
+    useEffect(()=> {
+
+    },[state.type]);
+
     return (
         <HContainer>
             <div class="toolbar">
@@ -262,7 +269,7 @@ export const Heading = (props) => {
                 <Format onChange={handleFormat}></Format>
                 <HeadingType onChange={handleHead}></HeadingType>
             </div>
-            <H2 id={state.type + '_' + props.index} contentEditable={true} alignment={state.align} type={state.type}>Write heading...</H2>
+            <H2 on id={state.type + '_' + props.index} contentEditable={true} alignment={state.align} type={state.type}>Write heading...</H2>
         </HContainer>
     );
 };
@@ -295,6 +302,7 @@ export const List = (props) => {
         document.execCommand(e);
     }
 
+
     return (
         <ListContainer>
 
@@ -326,9 +334,9 @@ export const Image = (props) => {
     }
 
     return (
-        <ImgContainer id={props.name + '_' + props.index}>
+        <ImgContainer >
 
-            <Figure caption={props.caption} captionEdit={false} captionText={state.caption}>
+            <Figure id={props.name + '_' + props.index} caption={props.caption} captionEdit={false} captionText={state.caption}>
                 <Img size={state.size} src={state.src} alt={props.alt}></Img>
 
             </Figure>
@@ -373,10 +381,6 @@ export const Quote = (props) => {
     };
 
     const [state, setState] = useState(stateData);
-
-    const handleChange = e => {
-        setState({ ...state, align: e })
-    }
 
 
     const handleFormat = e => {
