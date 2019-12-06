@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+ 
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 25%, 0) scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toolbar {
+  visibility: hidden;
+  position: absolute;
+  top: -60px;
+  left: 13px;
+  display: flex;
+  background: #e4e4e4;
+  min-width: 20rem;
+  border-radius: 0.9rem;
+  padding: 0 0.5rem;
+  box-shadow: 0 0 5px 1px #8888887d;
+}
+
