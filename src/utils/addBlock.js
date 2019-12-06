@@ -326,6 +326,8 @@ export const List = (props) => {
 };
 
 export const Image = (props) => {
+    const {name, index} = props;
+
 
     const [state, setState] = useState({ src: '', align: 'left', caption: '', size: 'small' });
 
@@ -336,7 +338,7 @@ export const Image = (props) => {
     return (
         <ImgContainer >
 
-            <Figure id={props.name + '_' + props.index} caption={props.caption} captionEdit={false} captionText={state.caption}>
+            <Figure name={name} index={index} caption={props.caption} captionEdit={false} captionText={state.caption}>
                 <Img size={state.size} src={state.src} alt={props.alt}></Img>
 
             </Figure>

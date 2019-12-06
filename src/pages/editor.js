@@ -195,7 +195,7 @@ class Editor extends React.Component {
 
     addFigure = () => { 
         const name = 'figure'
-        const el = <Figure name={figure} index={this.state.nextIndex}/>;
+        const el = <Figure name={name} index={this.state.nextIndex}/>;
 
         const block = this.createBlock(name, el);
 
